@@ -1,14 +1,47 @@
-<div class="banner p-5">
-  <%= link_to "Simple Airbnb", flats_path, class: "navbar-brand" %>
-</div>
-<div class="container">
-  <h2><%= @flat.name %></h2>
-  <p><%= @flat.address %></p>
+<div class="navbar navbar-expand-lg d-flex justify-content-between p-2" style="background-position: center; background-size: cover; height: 400px; background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('<%= @flat.picture_url%>')">
+  <%= link_to "Simple Airbnb", flats_path, class: "fs-1 text-decoration-none text-success" %>
+  <%= link_to "Edit Flat", edit_flat_path(@flat), class: "text-decoration-none btn btn-primary" %>
 </div>
 
-<div class=" container">
-  <h2><%= @flat.description %></h2>
-  <div class="bg-primary bg-opacity-50 p-5">
+<div class="container ">
+  <div class="row p-2">
+
+    <div class="col-8 ">
+      <div class="card bg-light mb-2 p-2">
+        <h2><%= @flat.name %></h2>
+        <p class=""><%= @flat.address %></p>
+      </div>
+
+      <div class="card bg-light p-2">
+        <h2>A bit more about the flat</h2>
+        <p><%= @flat.description %></p>
+      </div>
+    </div>
+
+      <div class="col-4">
+        <div class="card p-2">
+        <h2>Book this place</h2>
+          <form class="p-2">
+            <%= form_with model: @booking do |f| %>
+              <div class="d-grid gap-2 mb-2">
+              <%= f.label :from, class: "btn btn-success bg-opacity 25" %>
+              <%= f.text_field :date %>
+              </div>
+              <div class="d-grid gap-2 mb-2">
+              <%= f.label :to, class: "btn btn-success bg-opacity 25" %>
+              <%= f.text_field :date %>
+              </div>
+              <div class="d-grid gap-2">
+              <%= f.submit %>
+              </div>
+            <% end %>
+          </form>
+        </div>
+        <div class="d-flex m-2">
+              <i class="fa-brands fa-facebook-square me-2 card fs-3"></i>
+              <i class="fa-brands fa-twitter-square me-2 card fs-3"></i>
+              <i class="fa-brands fa-pinterest-square me-2 card fs-3"></i>
+            </div>
+      </div>
   </div>
-
 </div>

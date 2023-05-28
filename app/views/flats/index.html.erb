@@ -1,31 +1,35 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="container-fluid">
-    <%= link_to "Simple Airbnb", flats_path, class: "navbar-brand" %>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <div class="ms-auto flex">
-        <form class="flex my-2 my-lg-0">
-          <input class="form-control me-2" name="query" type="search" placeholder="Search" aria-label="Search" value="<%= params[:query] %>">
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
-        <%= link_to "Add Flat", new_flat_path, class: "btn btn-outline-primary my-2 my-sm-0 ms-2" %>
+<div class="align-items-center" style="background-position: center; background-size: cover; height: 200px; background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://assets.justinmind.com/wp-content/uploads/2019/09/flat-website-ui-design-history-principles-examples.png')">
+
+  <div class="d-flex justify-content-between  p-2 ">
+      <%= link_to "Simple Airbnb", flats_path, class: "fs-1 text-decoration-none text-primary btn" %>
+      <div class="">
+        <div class="d-flex">
+          <form class="d-flex">
+            <input class="form-control m-2" name="query" type="search" placeholder="Search" aria-label="Search" value="<%= params[:query] %>">
+            <button class="btn btn-success p-0" type="submit">Search</button>
+          </form>
+        </div>
+      </div>
+      <%= link_to "Add Flat", new_flat_path, class: "btn btn-primary p-2" %>
+  </div>
+</div>
+
+<div class="container d-flex flex-wrap justify-content-evently bg-light">
+  <% @flats.each do |flat| %>
+    <div class="card m-2 p-2 w-25 bg-opacity-25">
+      <img class="h-50"src=<%= flat.picture_url %> alt="imagen" >
+      <p><strong><%= flat.name %></strong></p>
+      <p><%= flat.address %></p>
+      <p><%= flat.price_per_night %>€</p>
+      <p><%= flat.number_of_guests %></p>
+      <div class="d-flex justify-content-between bg-light">
+        <%= link_to "More info", flat_path(flat), class: "btn  text-decoration-none p-1" %>
+        <%= link_to "Edit flat", edit_flat_path(flat), class: "btn text-decoration-none p-1" %>
+        <%= link_to "Delete",
+        flat_path(flat),
+        data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "btn  text-decoration-none p-1"
+        %>
       </div>
     </div>
-  </div>
-</nav>
-
-<div class="container d-flex flex-wrap justify-content-between bg-success bg-opacity-10">
-<% @flats.each do |flat| %>
-  <div class="card m-3 p-2 w-25">
-  <img src=<%= flat.picture_url %> alt="imagen">
-  <p><strong><%= flat.name %></strong></p>
-  <p><%= flat.address %></p>
-  <p><%= flat.price_per_night %>€</p>
-  <p><%= flat.number_of_guests %></p>
-  <p><%= link_to "more info", flat_path(flat), class: "text-decoration-none" %></p>
-  <%= link_to "Delete",
-   flat_path(flat),
-   data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
-   %>
-  </div>
   <% end %>
 </div>

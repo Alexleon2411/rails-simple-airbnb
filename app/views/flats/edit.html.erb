@@ -1,5 +1,5 @@
-<div class="container ">
-  <h2>Creat your new flat</h2>
+<div class="container">
+  <h2>Edit your Flat</h2>
   <%= simple_form_for(@flat) do |f| %>
     <%= f.input :name %>
     <%= f.input :address %>
@@ -9,5 +9,5 @@
     <%= f.input :number_of_guests %>
     <%= f.submit %>
   <% end %>
-  <%= link_to "go back", flats_path, class: "btn btn-primary m-2" %>
+  <%= link_to "go back", flats_path%>
 </div>
